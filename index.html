@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff1d6">
+<title>A Sweet Little Surprise 💗</title>
+<style>
+:root{--cream:#fff8e9;--waffle:#e8b56f;--caramel:#9a5d35;--brown:#593725;--pink:#ef9eae}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Georgia,serif;color:var(--brown);background:radial-gradient(circle at 15% 15%,#fff 0 2px,transparent 3px),linear-gradient(135deg,#fff2d9,#f9dcb1 55%,#fff4df);background-size:34px 34px,auto;overflow-x:hidden}
+main{width:min(920px,92%);margin:32px auto;padding:clamp(22px,5vw,52px);text-align:center;background:rgba(255,250,239,.92);border:5px solid #d69b59;border-radius:34px;box-shadow:0 18px 50px #87552b2b;position:relative;overflow:hidden}
+.tag{letter-spacing:4px;text-transform:uppercase;font: bold 12px Arial,sans-serif;color:#a66a3e}
+h1{font-size:clamp(2.1rem,7vw,4.5rem);margin:14px 0 8px;color:#70452c}
+.subtitle{font:16px Arial,sans-serif;color:#986b4c}
+.waffle{width:150px;height:130px;margin:22px auto 12px;border-radius:24px;background:repeating-linear-gradient(0deg,transparent 0 25px,#b77a3d 26px 31px),repeating-linear-gradient(90deg,#e8b56f 0 25px,#b77a3d 26px 31px);border:7px solid #a96e39;box-shadow:inset 0 0 0 5px #f5d49c,0 8px 0 #c58a4d;transform:rotate(-5deg);animation:bob 2.5s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-10px) rotate(3deg)}}
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:30px auto;max-width:650px}
+.unit{padding:18px 8px;background:#fff0d6;border:2px solid #e5b778;border-radius:18px;box-shadow:0 5px 0 #d5a064}
+.num{font:bold clamp(1.8rem,6vw,3rem) Arial,sans-serif;color:#8a512e;display:block;font-variant-numeric:tabular-nums}
+.unit small{font:12px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;color:#a36e48}
+.message{max-width:660px;margin:28px auto;padding:25px 22px;border-radius:24px;background:#fff5e8;border:1px dashed #d49a5d;font-size:clamp(1.05rem,2.8vw,1.3rem);line-height:1.75}
+.message strong{color:#a65e65}
+.note{font:14px Arial,sans-serif;color:#a27454;margin-top:22px}
+.heart{position:fixed;bottom:-35px;opacity:.7;pointer-events:none;animation:floatUp linear forwards}
+@keyframes floatUp{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+footer{font:13px Arial,sans-serif;color:#a27454;margin-top:28px}
+@media(max-width:520px){main{margin:12px auto;border-radius:25px}.countdown{grid-template-columns:repeat(2,1fr)}.unit{padding:14px 6px}}
+</style>
+</head>
+<body>
+<main>
+  <div class="tag">A little surprise, made with love</div>
+  <h1>Heyyy, my favourite person! 💗</h1>
+  <p class="subtitle">Something sweet is getting closer…</p>
+  <div class="waffle" aria-label="Animated waffle illustration"></div>
+  <h2>Counting down to YOUR day 🎂</h2>
+  <div class="countdown" aria-live="polite">
+    <div class="unit"><span class="num" id="days">--</span><small>Days</small></div>
+    <div class="unit"><span class="num" id="hours">--</span><small>Hours</small></div>
+    <div class="unit"><span class="num" id="minutes">--</span><small>Minutes</small></div>
+    <div class="unit"><span class="num" id="seconds">--</span><small>Seconds</small></div>
+  </div>
+  <section class="message">
+    <strong>My love, ❤️</strong><br>
+    Just a little reminder that your special day is getting closer, and I’m already excited for it.
+    I’m here to make your birthday as lovely as I can, and I’ll try my very best to make you feel extra special.
+    <br><br>
+    You make my ordinary days sweeter than waffles with extra syrup. 🧇
+    Your smile is my favourite kind of sunshine, and I hope this little surprise makes you smile too.
+    <br><br>
+    Until your birthday, remember: you are appreciated, cherished, and worth celebrating every single day.
+    <br><br>
+    <strong>Can’t wait to make sweet memories with you. 💕</strong>
+    <br><br>
+    Always cheering for you,<br><strong>Your favourite person</strong>
+  </section>
+  <div class="note">A little sweetness for the sweetest person. 🍓</div>
+  <footer>Made with extra syrup, sprinkles & lots of love 🧇</footer>
+</main>
+<script>
+const birthday = new Date(2026, 11, 27, 0, 0, 0); // December 27, 2026 (local time)
+function updateCountdown(){
+  const now = new Date();
+  let diff = Math.max(0, birthday - now);
+  const d = Math.floor(diff / 86400000); diff %= 86400000;
+  const h = Math.floor(diff / 3600000); diff %= 3600000;
+  const m = Math.floor(diff / 60000); diff %= 60000;
+  const s = Math.floor(diff / 1000);
+  document.getElementById('days').textContent = d;
+  document.getElementById('hours').textContent = String(h).padStart(2,'0');
+  document.getElementById('minutes').textContent = String(m).padStart(2,'0');
+  document.getElementById('seconds').textContent = String(s).padStart(2,'0');
+  if (birthday - now <= 0) document.querySelector('h2').textContent = "It’s your birthday!! Happy Birthday! 🎉";
+}
+updateCountdown(); setInterval(updateCountdown,1000);
+const symbols=['💗','♡','🍓','✨','🧇'];
+function floatHeart(){
+  const el=document.createElement('span'); el.className='heart';
+  el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+  el.style.left=Math.random()*100+'vw';
+  el.style.fontSize=(16+Math.random()*22)+'px';
+  el.style.animationDuration=(7+Math.random()*6)+'s';
+  document.body.appendChild(el); setTimeout(()=>el.remove(),14000);
+}
+setInterval(floatHeart,850);
+</script>
+</body>
+</html>
