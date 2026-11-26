@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d27"><title>A Little Playlist of Us 🌙</title>
+<style>
+:root{--ice:#dce8ff;--muted:#9eafd9}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--ice);font-family:Georgia,serif;background:radial-gradient(ellipse at 50% 0%,#26376f 0%,#111a42 35%,#080d27 78%);overflow-x:hidden}
+#stars{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.star{position:absolute;width:3px;height:3px;background:#fff;border-radius:50%;box-shadow:0 0 9px 2px #b8d4ff;animation:twinkle 2.8s infinite ease-in-out alternate}
+@keyframes twinkle{from{opacity:.2;transform:scale(.7)}to{opacity:1;transform:scale(1.5)}}
+.moon{width:100px;height:100px;margin:0 auto 22px;border-radius:50%;background:#f4edcf;box-shadow:0 0 25px #fff3c5,0 0 75px #9dbdff88;position:relative}
+.moon:after{content:"";position:absolute;width:91px;height:91px;left:25px;top:-10px;border-radius:50%;background:#1a2859}
+main{position:relative;z-index:1;width:min(900px,92%);margin:38px auto;padding:clamp(22px,5vw,48px);text-align:center;background:#0c1435e8;border:1px solid #8db4ff55;border-radius:30px;box-shadow:0 0 55px #5b8cff20}
+.eyebrow{font:11px Arial,sans-serif;letter-spacing:5px;text-transform:uppercase;color:#b5c9ff}
+h1{font-size:clamp(2.2rem,7vw,4.4rem);font-weight:normal;margin:12px 0;color:#f1f4ff;text-shadow:0 0 22px #9fc3ff88}
+.subtitle{font:15px Arial,sans-serif;color:var(--muted);line-height:1.7}
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:620px;margin:26px auto 34px}
+.unit{padding:14px 6px;border:1px solid #93b7ff55;border-radius:15px;background:#17234a99}
+.num{display:block;font:bold clamp(1.7rem,5vw,2.5rem) Arial,sans-serif;color:#e5eeff;font-variant-numeric:tabular-nums}
+.unit small{font:10px Arial,sans-serif;letter-spacing:2px;color:#a9bde9;text-transform:uppercase}
+.section-title{font-size:1.6rem;font-weight:normal;margin:24px 0 8px}
+.song-list{display:grid;gap:12px;margin:22px auto;max-width:690px;text-align:left}
+.song{display:flex;align-items:center;gap:15px;padding:16px;border:1px solid #829fe955;border-radius:17px;background:linear-gradient(110deg,#182653cc,#101a3bcc);cursor:pointer;transition:.2s}
+.song:hover,.song.active{border-color:#c2d8ff;box-shadow:0 0 22px #8db7ff35;transform:translateY(-2px)}
+.disc{flex:0 0 48px;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#e8eaff 0 8%,#7895df 10% 24%,#263c79 26% 100%);box-shadow:0 0 16px #a7c6ff66}
+.song-info{flex:1}.song-name{font-size:1.15rem;color:#f1f4ff}.dedication{font:13px Arial,sans-serif;color:#aebfe7;margin-top:5px;line-height:1.5}
+.play{font:12px Arial,sans-serif;color:#dbe8ff;border:1px solid #8baeff77;border-radius:30px;padding:8px 12px;white-space:nowrap}
+.player-wrap{display:none;margin:20px auto 0;max-width:700px;padding:12px;border:1px solid #90b4ff66;border-radius:18px;background:#060b20}
+.player-wrap.show{display:block}.player-label{font:12px Arial,sans-serif;color:#b8caff;margin:4px 0 10px}
+iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px}
+.note{max-width:650px;margin:30px auto 15px;padding:22px;border:1px solid #9bb8ff55;border-radius:20px;background:#17234a88;line-height:1.8;color:#dce6ff}
+button{border:1px solid #b6cfff88;border-radius:30px;padding:13px 22px;background:linear-gradient(100deg,#344c91,#73568d);color:white;font:14px Arial,sans-serif;cursor:pointer}
+#secret{display:none;margin:18px auto 0;max-width:620px;color:#f4d9ec;line-height:1.8;font-size:1.1rem}
+footer{font:12px Arial,sans-serif;color:#879ac9;margin-top:30px}
+@media(max-width:520px){main{margin:14px auto}.countdown{grid-template-columns:repeat(2,1fr)}.song{gap:10px;padding:12px}.play{padding:7px 9px}.moon{width:80px;height:80px}.moon:after{width:73px;height:73px;left:20px}}
+</style></head>
+<body><div id="stars"></div><main>
+<div class="moon" aria-label="glowing moon"></div>
+<div class="eyebrow">a little playlist, made just for you</div>
+<h1>A Little Playlist of Us 💙</h1>
+<p class="subtitle">Three songs, a thousand feelings, and one person who makes my world brighter.</p>
+<h2 class="section-title">Until your special day… ✨</h2>
+<div class="countdown" aria-live="polite">
+<div class="unit"><span class="num" id="days">--</span><small>Days</small></div>
+<div class="unit"><span class="num" id="hours">--</span><small>Hours</small></div>
+<div class="unit"><span class="num" id="minutes">--</span><small>Minutes</small></div>
+<div class="unit"><span class="num" id="seconds">--</span><small>Seconds</small></div></div>
+<h2 class="section-title">Press play, think of us 🎧</h2>
+<p class="subtitle">Pick a song. Let it play while you read the little note made for you.</p>
+<div class="song-list">
+<div class="song" data-index="0" role="button" tabindex="0"><div class="disc">♫</div><div class="song-info"><div class="song-name">01 · Laavan</div><div class="dedication">For the feeling of choosing you, again and again. 💍</div></div><span class="play">PLAY ▶</span></div>
+<div class="song" data-index="1" role="button" tabindex="0"><div class="disc">♫</div><div class="song-info"><div class="song-name">02 · Ishq</div><div class="dedication">For all the little ways you make my heart feel full. 💗</div></div><span class="play">PLAY ▶</span></div>
+<div class="song" data-index="2" role="button" tabindex="0"><div class="disc">♫</div><div class="song-info"><div class="song-name">03 · Safar</div><div class="dedication">For every beautiful memory still waiting for us. 🌙</div></div><span class="play">PLAY ▶</span></div>
+</div>
+<div class="player-wrap" id="playerWrap"><div class="player-label" id="playerLabel">Now playing</div><iframe id="player" title="YouTube music player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<div class="note">If I could send you one feeling through these songs, it would be this:<br><strong>You make even the quietest moments feel special.</strong><br>I'm here, cheering for you, and I'll try my best to make your birthday as lovely as you deserve.</div>
+<button id="surpriseBtn" type="button">Open one little note ✨</button>
+<div id="secret">No matter how many songs play or how many days pass, you’ll always be one of my favourite parts of this story. I can’t wait to make more memories with you. Happy almost-birthday, my love. 💙</div>
+<footer>Made under the same sky, with a little extra love. 🌌</footer></main>
+<script>
+const videos=[{name:"Laavan",id:"OxXKDGO-MYQ"},{name:"Ishq",id:"LsUdoy7EH7M"},{name:"Safar",id:"hHuG7FIKgtc"}];
+const birthday=new Date(2026,11,27,0,0,0);
+function updateCountdown(){let diff=Math.max(0,birthday-new Date()),d=Math.floor(diff/86400000);diff%=86400000;let h=Math.floor(diff/3600000);diff%=3600000;let m=Math.floor(diff/60000);diff%=60000;let s=Math.floor(diff/1000);document.getElementById('days').textContent=d;document.getElementById('hours').textContent=String(h).padStart(2,'0');document.getElementById('minutes').textContent=String(m).padStart(2,'0');document.getElementById('seconds').textContent=String(s).padStart(2,'0');if(birthday-new Date()<=0)document.querySelector('.section-title').textContent="It's your birthday!! 🎂";}
+updateCountdown();setInterval(updateCountdown,1000);
+const wrap=document.getElementById('playerWrap'),player=document.getElementById('player'),label=document.getElementById('playerLabel');
+function playSong(index){const song=videos[index];document.querySelectorAll('.song').forEach((el,i)=>el.classList.toggle('active',i===index));label.textContent="Now playing · "+song.name+" — tap play in the YouTube player";player.src="https://www.youtube-nocookie.com/embed/"+song.id+"?rel=0";wrap.classList.add('show');wrap.scrollIntoView({behavior:'smooth',block:'nearest'});}
+document.querySelectorAll('.song').forEach(el=>{const go=()=>playSong(Number(el.dataset.index));el.addEventListener('click',go);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});});
+document.getElementById('surpriseBtn').addEventListener('click',()=>{document.getElementById('secret').style.display='block';document.getElementById('surpriseBtn').textContent='A little note, just for you 💙';});
+const stars=document.getElementById('stars');for(let i=0;i<95;i++){const s=document.createElement('i');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=(Math.random()*3)+'s';s.style.opacity=.3+Math.random()*.7;stars.appendChild(s);}
+</script></body></html>
